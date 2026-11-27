@@ -1,0 +1,11 @@
+*.tif
+*.rds
+*.csv
+*.cpg
+*.dbf
+*.prj
+*.shp
+./2_Data
+./4_Output/indiv_plands/*.tif
+./4_Output/*.tif
+./_targets
