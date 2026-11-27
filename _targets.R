@@ -8,7 +8,6 @@ setwd(this.path::this.dir())
 #load libraries for targets script
 library(targets)
 library(tarchetypes)
-#install.packages("geotargets",  repos = c("https://njtierney.r-universe.dev", "https://cran.r-project.org"))
 library(geotargets)
 library(clustermq)
 library(callr)
@@ -35,21 +34,6 @@ here_rel <- function(...) {fs::path_rel(here::here(...))}
 #Source functions in pipeline
 lapply(list.files(file.path("1_Scripts", "Functions"),  full.names = TRUE,  recursive = TRUE),  source)
 
-# cluster options
-options(
-#     clustermq.scheduler="multiprocess",
-#     clustermq.template = './asfra_tmpl.tmpl', # handles the attributes of the workers, things in defaults below are defaults (if resoures changes template files)
-#     clustermq.template = './ssfweekly_tmpl.tmpl', # handles the attributes of the workers, things in defaults below are defaults (if resoures changes template files)
-    clustermq.defaults = list(#conda="asfra_run",
-                              log_file = './log/o%i.out',
-                              error='./log/e%i.err',
-                              memory=12129,
-                              #                                     memory=49152,
-                              n_jobs=1,
-                              cores=2,
-                              #                                     cores=12,
-                              walltime=7200),
-    clustermq.worker.timeout = 7200)
 
 
 
@@ -146,7 +130,6 @@ list(
     tar_target(wb, formatWB(wb_path, mast)),
 
     ### Spatial transform check ------
-#     tar_target(CRS_check_status, CheckAllGeo(wb, wbr_lcd, lcd, tc, mast, geo2, rd1, rd2, rd3, rgd, prcp, tmax, tmin)),
     tar_target(CRS_check_status, CheckAllGeo(wb, lcd, tc, mast, geo2, rd1, rd2, rd3, rgd, prcp, tmax, tmin)),
     tar_target(write_lcd, writeRaster(lcd, 'lcd_contus_5070_500m.tif', overwrite=TRUE)),
   
