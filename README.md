@@ -5,6 +5,6 @@ Takes input data and GPS collar data and determines habitat preference from step
 
 Changes to typical SSF analysis demonstrated in the following diagram: 
 
-![SSF breakdown](https://github.com/TuskMod/asfra_habpref/diagram/SSF_flow.png)
+![SSF diagram](diagram/SSF_flow.png)
 
 Data and model defninitions are not included in this repo, contact eric.sodja@usda.net for access.
